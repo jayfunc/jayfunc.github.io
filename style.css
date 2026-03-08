@@ -1,0 +1,376 @@
+:root {
+  --bg-color: #fafafa;
+  --text-color: #1a1a1a;
+  --card-bg: #ffffff;
+  --accent-color: #7b8898;
+  --nav-bg: rgba(250, 250, 250, 0.7);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --card-bg: #1e1e1e;
+  --accent-color: #aeb8c4;
+  --nav-bg: rgba(18, 18, 18, 0.7);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Poppins", "Noto Serif SC", serif;
+  line-height: 1.6;
+  transition: var(--transition);
+  overflow-x: hidden;
+}
+
+/* Navbar: Glassmorphism */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+select {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+#theme-switch {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  fill: var(--text-color);
+}
+
+[data-theme="dark"] .sun-icon {
+  display: block;
+}
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+[data-theme="light"] .sun-icon {
+  display: none;
+}
+[data-theme="light"] .moon-icon {
+  display: block;
+}
+
+/* Sections */
+section,
+header {
+  padding: 6rem 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--text-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Artworks Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.art-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.art-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.art-card:hover img {
+  transform: scale(1.05);
+}
+
+.art-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* 优化渐变背景，让它往上延伸得更平滑，避免突兀的黑边 */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  color: white;
+  padding: 4rem 1.5rem 1.5rem; /* 增加顶部的 padding，让渐变过渡得更自然 */
+
+  /* 核心动画修改：初始状态完全透明，且稍微往下偏移 20px (而不是整个元素的高度) */
+  opacity: 0;
+
+  /* 使用一种被称为 "ease-out-expo" 感觉的丝滑曲线 */
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.art-card:hover .art-overlay {
+  /* 悬浮状态：文字不仅浮现，而且伴随极其平滑的减速归位 */
+  opacity: 1;
+}
+
+/* Projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  background: var(--bg-color);
+  border-radius: 20px;
+  border: 1px solid var(--accent-color);
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.6;
+}
+
+footer {
+  text-align: center;
+  padding: 3rem;
+  color: var(--accent-color);
+  font-size: 0.9rem;
+}
+
+/* Scroll Animation (灵动感核心) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Adaptation */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 5%;
+  }
+  section,
+  header {
+    padding: 5rem 5% 3rem;
+  }
+  .hero {
+    min-height: 50vh;
+  }
+  .art-card {
+    aspect-ratio: 1/1;
+  }
+}
+
+/* =========================================
+   定制化艺术下拉框样式 (替代原生 Select)
+   ========================================= */
+.custom-lang-switch {
+  position: relative;
+  font-family: inherit;
+}
+
+.lang-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  transition: var(--transition);
+}
+
+.lang-toggle:hover {
+  opacity: 0.6;
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 展开时的箭头翻转 */
+.custom-lang-switch.open .chevron {
+  transform: rotate(180deg);
+}
+
+.lang-menu {
+  position: absolute;
+  /* 核心修改：将位置从下方移上来，利用负值覆盖按钮 */
+  top: -8px;
+  right: -12px;
+
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px); /* 稍微增加一点模糊度，让覆盖效果更柔和 */
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 12px;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 120px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); /* 加深一点阴影，增强悬浮层级感 */
+  border: 1px solid rgba(150, 150, 150, 0.15);
+  z-index: 1001; /* 确保绝对覆盖在按钮上方 */
+
+  /* 动画调整：去掉垂直位移，改为纯粹的原位“呼吸缩放” */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.85);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: top right; /* 动画以右上角为基准点展开 */
+}
+
+.custom-lang-switch.open .lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.lang-menu li {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--text-color);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.lang-menu li:hover {
+  background: rgba(150, 150, 150, 0.1);
+  color: var(--accent-color);
+}
+
+.lang-menu li.active {
+  font-weight: 600;
+}
+
+/* 为所有需要翻译的元素添加渐变过渡，让文字切换不生硬 */
+[data-i18n] {
+  transition: opacity 0.3s ease;
+}
+
+/* 艺术引言专属样式 */
+.section-subtitle {
+  font-family: "Noto Serif SC", serif; /* 使用衬线体，自带文艺与雕刻感 */
+  font-size: 1.05rem;
+  color: var(--accent-color); /* 使用主题变量中的柔和色彩 */
+  margin-top: -1.5rem;
+  margin-bottom: 3rem; /* 为下方的画廊留出呼吸空间 */
+  font-weight: 300;
+  opacity: 0.85;
+}
