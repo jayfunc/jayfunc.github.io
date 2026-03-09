@@ -80,6 +80,10 @@ select {
   fill: var(--text-color);
 }
 
+.sun-icon {
+  color: white;
+}
+
 [data-theme="dark"] .sun-icon {
   display: block;
 }
