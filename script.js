@@ -132,3 +132,73 @@ document.addEventListener("mousemove", (e) => {
     shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
   });
 });
+
+// 5. 自定义鼠标跟随与悬停效果 (灵动双层鼠标)
+const cursorDot = document.querySelector(".custom-cursor-dot");
+const cursorRing = document.querySelector(".custom-cursor-ring");
+
+// 仅在非触屏（有精细指针）的设备上执行
+if (window.matchMedia("(pointer: fine)").matches && cursorDot && cursorRing) {
+  // 初始化坐标，放在屏幕外避免初始闪烁
+  let mouseX = -100,
+    mouseY = -100;
+  let ringX = -100,
+    ringY = -100;
+
+  // 监听鼠标移动
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // 小圆点实时跟随，注意这里保留了 translate(-50%, -50%) 来保证绝对居中
+    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+  });
+
+  // 大圆环使用缓动算法 (Lerp) 实现顺滑的延迟跟随
+  const renderCursor = () => {
+    // 0.15 是缓动系数，越小越慢，越大越快
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+
+    // 大圆环同样保留 translate(-50%, -50%) 保证中心点重合
+    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(renderCursor); // 保持 60帧 的丝滑动画
+  };
+  requestAnimationFrame(renderCursor);
+
+  // 为所有需要交互的元素添加悬停效果
+  const hoverElements = document.querySelectorAll(
+    "a, button, .art-card, .lang-menu li, #lang-toggle",
+  );
+
+  hoverElements.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursorRing.classList.add("hover");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursorRing.classList.remove("hover");
+    });
+  });
+
+  // 为所有纯文本元素添加艺术性文本光标效果
+  const textElements = document.querySelectorAll(
+    "p, h1, h2, h3, span, .logo, .art-overlay",
+  );
+
+  textElements.forEach((el) => {
+    // 排除掉已经是可点击的元素（比如按钮里面的文字），防止效果冲突
+    if (
+      el.closest("a") ||
+      el.closest("button") ||
+      el.classList.contains("active")
+    )
+      return;
+
+    el.addEventListener("mouseenter", () => {
+      cursorRing.classList.add("text-hover");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursorRing.classList.remove("text-hover");
+    });
+  });
+}

@@ -457,3 +457,93 @@ footer {
     height: 50px;
   }
 }
+
+/* =========================================
+   自定义鼠标指针 (仅在支持鼠标的设备上生效)
+   ========================================= */
+@media (pointer: fine) {
+  /* 隐藏默认鼠标以及各个可点击元素的默认小手 */
+  body,
+  a,
+  button,
+  select,
+  .art-card,
+  .lang-menu li {
+    cursor: none !important;
+  }
+
+  /* 隐藏所有文本的默认鼠标 (I形光标) */
+  p,
+  h1,
+  h2,
+  h3,
+  span,
+  .logo {
+    cursor: none !important;
+  }
+
+  /* 当鼠标悬浮在文本上时：圆环压扁拉长，变成一条优雅的垂直线 */
+  .custom-cursor-ring.text-hover {
+    width: 4px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    border-color: transparent;
+    opacity: 0.4;
+    /* 让它在小黑点背后形成一个柔和的竖向光晕 */
+  }
+
+  /* 中心小实心点 (笔尖) */
+  .custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* 穿透鼠标事件，防止遮挡点击 */
+    z-index: 9999; /* 保证在最顶层 */
+    transition: opacity 0.3s ease;
+  }
+
+  /* 外围空心圆环 (灵动跟随) */
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998;
+    /* 注意：不要给 transform 加 transition，否则 JS 动画会卡顿 */
+    transition:
+      width 0.3s ease,
+      height 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  /* 悬停在可点击元素上的状态：圆环放大，变成淡淡的阴影 */
+  .custom-cursor-ring.hover {
+    width: 50px;
+    height: 50px;
+    background-color: var(--shape-color); /* 利用之前定义的几何背景极淡色 */
+    border-color: transparent; /* 隐藏边框，只留阴影 */
+  }
+}
+
+/* =========================================
+   全局文本选中高亮颜色 (艺术化选词)
+   ========================================= */
+::selection {
+  background-color: var(--accent-color); /* 使用你的高级灰/柔和强调色 */
+  color: var(--bg-color); /* 文字变成背景色，形成反差 */
+  /* 文字选中时取消阴影，保持纯粹的几何感 */
+  text-shadow: none;
+}
