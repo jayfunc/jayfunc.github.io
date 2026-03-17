@@ -1,27 +1,28 @@
 // 1. 中英双语切换逻辑
 const translations = {
   zh: {
-		logoText: "摘叶飞镖",
+    logoText: "摘叶飞镖",
     pageTitle: "摘叶飞镖的个人主页",
-    heroTitle: "当代码有了色彩",
+    heroTitle: "代码之外，黑白之间",
     heroSubtitle: "艺术创作与开源世界",
     artTitle: "个人画作",
-		artSubtitle: "用线条勾勒时光，用明暗泼墨心漾",
+    artSubtitle: "用线条勾勒时光，用明暗泼墨心漾",
     art1: "天气之子",
     art2: "超能陆战队",
     art3: "疯狂动物城",
     projTitle: "开源项目",
     proj1Title: "BetterLyrics",
-    proj1Desc: "BetterLyrics 是一款优雅且高度自定义的歌词可视化与全能音乐播放应用，基于 WinUI3 / Win2D 构建。",
+    proj1Desc:
+      "BetterLyrics 是一款优雅且高度自定义的歌词可视化与全能音乐播放应用，基于 WinUI3 / Win2D 构建。",
     viewGithub: "前往 GitHub 查看",
   },
   en: {
-		logoText: "jayfunc",
+    logoText: "jayfunc",
     pageTitle: "jayfunc's Space",
-    heroTitle: "Code in Color",
+    heroTitle: "Beyond Code, Between Black & White",
     heroSubtitle: "Artistry and Open Source",
     artTitle: "Artworks",
-		artSubtitle: "Lines to sketch the time, shade to splash the mind",
+    artSubtitle: "Lines to sketch the time, shade to splash the mind",
     art1: "Weathering With You",
     art2: "Big Hero 6",
     art3: "Zootopia",
@@ -118,3 +119,16 @@ const revealOptions = {
 
 const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
 revealElements.forEach((el) => revealObserver.observe(el));
+
+// 4. 极简几何背景鼠标跟随逻辑
+document.addEventListener("mousemove", (e) => {
+  const shapes = document.querySelectorAll(".shape");
+  const x = e.clientX / window.innerWidth;
+  const y = e.clientY / window.innerHeight;
+
+  shapes.forEach((shape, index) => {
+    // 为不同的形状设置不同的速度，增加层次感
+    const speed = (index + 1) * 20;
+    shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+  });
+});
