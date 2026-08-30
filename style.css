@@ -211,21 +211,6 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.tags {
-  margin: 1.5rem 0;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.tags span {
-  font-size: 0.8rem;
-  padding: 0.3rem 0.8rem;
-  background: var(--bg-color);
-  border-radius: 20px;
-  border: 1px solid var(--accent-color);
-}
-
 .btn {
   display: inline-block;
   text-decoration: none;
@@ -539,6 +524,202 @@ footer {
 }
 
 /* =========================================
+   新增页面内容样式 (关于我, 徽章, 统计, 强化项目卡片)
+   ========================================= */
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-spacer {
+  flex: 1;
+}
+
+.copyright {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+
+.footer-links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--accent-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+  cursor: none; /* 兼容自定义光标 */
+}
+
+.footer-links a:hover {
+  color: var(--text-color);
+}
+
+.footer-links a i {
+  font-size: 1.4rem; /* 稍微放大只有图标时的尺寸 */
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+  .footer-spacer {
+    display: none;
+  }
+  .footer-links {
+    justify-content: center;
+  }
+}
+
+.custom-badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.custom-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: none; /* 适配现有的自定义光标 */
+}
+
+/* 针对不可点击的静态标签 (如项目里的技术栈) - 弱化视觉权重 */
+span.custom-badge {
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(128, 128, 128, 0.05);
+}
+
+/* 针对可点击的按钮型标签 (如 GitHub, 联系方式) - 强化对比度 */
+a.custom-badge, button.custom-badge {
+  color: var(--text-color);
+  background: transparent;
+  border: 1px solid var(--text-color);
+}
+
+.custom-badge i {
+  font-size: 1.1rem;
+}
+
+/* 仅对可点击的徽章应用悬停特效 */
+a.custom-badge:hover, button.custom-badge:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+  transform: translateY(-2px);
+}
+
+/* 增强的项目卡片 */
+.project-card.large {
+  grid-column: 1 / -1;
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-banner {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 2.5rem 0;
+}
+
+.project-header h3 {
+  margin: 0;
+}
+
+.project-card.large p {
+  padding: 0 2.5rem;
+  margin-top: 1rem;
+}
+
+.highlights-title {
+  padding: 0 2.5rem;
+  margin: 2rem 0 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.highlights-list {
+  list-style: none; /* 移除默认圆点 */
+  padding: 0 2.5rem 2rem 2.5rem;
+  color: var(--accent-color);
+}
+
+.highlights-list li {
+  position: relative;
+  margin-bottom: 0.8rem;
+  padding-left: 1.2rem; /* 为自定义符号留出空间 */
+}
+
+/* 自定义极简菱形标记 (呼应背景几何形状) */
+.highlights-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 4px;
+  height: 4px;
+  background-color: var(--text-color);
+  opacity: 0.3;
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+}
+
+.highlights-list li:hover::before {
+  opacity: 0.8;
+  transform: rotate(135deg) scale(1.2); /* 悬停时旋转放大增添灵动感 */
+}
+
+.project-card.large .btn {
+  margin: 0 0 2.5rem 2.5rem;
+}
+
+/* Notion 画廊按钮 */
+.notion-link-container {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+.notion-btn {
+  font-size: 1.1rem;
+  padding-bottom: 4px;
+}
+
+/* 响应主题的图片切换 */
+[data-theme="light"] .theme-img-dark {
+  display: none !important;
+}
+
+[data-theme="dark"] .theme-img-light {
+  display: none !important;
+}
+
+/* =========================================
    全局文本选中高亮颜色 (艺术化选词)
    ========================================= */
 ::selection {
@@ -546,4 +727,32 @@ footer {
   color: var(--bg-color); /* 文字变成背景色，形成反差 */
   /* 文字选中时取消阴影，保持纯粹的几何感 */
   text-shadow: none;
+}
+
+/* =========================================
+   自定义滚动条 (适配主题变化)
+   ========================================= */
+html {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) var(--bg-color);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 5px;
+  border: 2px solid var(--bg-color); /* 创建内边距效果，使滚动条更纤细优雅 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-color);
 }

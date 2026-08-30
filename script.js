@@ -1,20 +1,24 @@
-// 1. 中英双语切换逻辑
 const translations = {
   zh: {
     logoText: "摘叶飞镖",
     pageTitle: "摘叶飞镖的个人主页",
     heroTitle: "代码之外，黑白之间",
     heroSubtitle: "艺术创作与开源世界",
-    artTitle: "个人画作",
+    artTitle: "艺术画作",
     artSubtitle: "用线条勾勒时光，用明暗泼墨心漾",
     art1: "天气之子",
     art2: "超能陆战队",
     art3: "疯狂动物城",
+    viewNotionArt: "访问 Notion 画廊",
     projTitle: "开源项目",
     proj1Title: "BetterLyrics",
-    proj1Desc:
-      "BetterLyrics 是一款优雅且高度自定义的歌词可视化与全能音乐播放应用，基于 WinUI3 / Win2D 构建。",
-    viewGithub: "前往 GitHub 查看",
+    proj1Desc: "BetterLyrics 是一款优雅且高度自定义的歌词可视化与全能音乐播放应用，基于 WinUI3 / Win2D 构建。",
+    blHighlightsTitle: "特性概览",
+    blF1: "Win2D 自定义渲染，高帧率且低系统开销",
+    blF2: "流体背景、3D 歌词、粒子特效及多视窗模式",
+    blF3: "深度兼容本地媒体及主流流媒体（Spotify / Apple Music 等）",
+    blF4: "多格式歌词解析引擎，支持离线机器翻译",
+    viewGithub: "查看源码"
   },
   en: {
     logoText: "jayfunc",
@@ -26,12 +30,17 @@ const translations = {
     art1: "Weathering With You",
     art2: "Big Hero 6",
     art3: "Zootopia",
+    viewNotionArt: "Visit Notion Gallery",
     projTitle: "Open Source",
     proj1Title: "BetterLyrics",
-    proj1Desc:
-      "BetterLyrics is an elegant and deeply customizable lyrics visualizer & versatile music player, built with WinUI3 / Win2D.",
-    viewGithub: "View on GitHub",
-  },
+    proj1Desc: "BetterLyrics is an elegant and deeply customizable lyrics visualizer & versatile music player, built with WinUI3 / Win2D.",
+    blHighlightsTitle: "Highlights",
+    blF1: "Custom Win2D rendering engine for high performance and low overhead",
+    blF2: "Fluid backgrounds, 3D lyrics, particle effects, and multi-window modes",
+    blF3: "Seamless integration with local files and external streaming apps",
+    blF4: "Advanced lyrics parsing engine with multi-format and translation support",
+    viewGithub: "View Source Code"
+  }
 };
 
 // 1. 艺术化中英双语切换逻辑

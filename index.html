@@ -56,7 +56,7 @@
     </header>
 
     <section id="artworks" class="reveal">
-      <h2 data-i18n="artTitle">个人画作</h2>
+      <h2 data-i18n="artTitle">艺术画作</h2>
       <p class="section-subtitle" data-i18n="artSubtitle">
         用线条勾勒时光，用明暗泼墨心漾
       </p>
@@ -83,35 +83,58 @@
           <div class="art-overlay" data-i18n="art3">疯狂动物城</div>
         </div>
       </div>
+      <div class="notion-link-container">
+        <a href="https://topaz-seed-d12.notion.site/319489e27f45808a8163cbe04447f90b" target="_blank" class="btn notion-btn" data-i18n="viewNotionArt">访问 Notion 画廊</a>
+      </div>
     </section>
 
     <section id="projects" class="reveal">
       <h2 data-i18n="projTitle">开源项目</h2>
       <div class="project-grid">
-        <div class="project-card">
-          <h3 data-i18n="proj1Title">BetterLyrics</h3>
-          <p data-i18n="proj1Desc">
-            BetterLyrics
-            是一款优雅且高度自定义的歌词可视化与全能音乐播放应用，基于 WinUI3 /
-            Win2D 构建。
-          </p>
-          <div class="tags">
-            <span>WinUI 3</span>
-            <span>C#</span>
+        <div class="project-card large">
+          <a href="https://github.com/jayfunc/BetterLyrics" target="_blank">
+            <img class="project-banner" src="https://raw.githubusercontent.com/jayfunc/BetterLyrics/refs/heads/dev/docs/assets/promotion/banner.png" alt="BetterLyrics Banner">
+          </a>
+          <div class="project-header">
+             <h3 data-i18n="proj1Title">BetterLyrics</h3>
+             <a href="https://github.com/jayfunc/BetterLyrics" target="_blank" class="custom-badge"><i class="ph ph-github-logo"></i> GitHub</a>
           </div>
-          <a
-            href="https://github.com/jayfunc/BetterLyrics"
-            target="_blank"
-            class="btn"
-            data-i18n="viewGithub"
-            >View on GitHub</a
-          >
+          
+          <p data-i18n="proj1Desc">
+            BetterLyrics 是一款优雅且高度自定义的歌词可视化与全能音乐播放应用，基于 WinUI3 / Win2D 构建。
+          </p>
+          <div class="custom-badge-group" style="padding: 0 2.5rem; margin-top: 1.5rem; margin-bottom: 0;">
+            <span class="custom-badge">C#</span>
+            <span class="custom-badge">WinUI 3</span>
+            <span class="custom-badge">Windows App SDK</span>
+            <span class="custom-badge">Win2D</span>
+            <span class="custom-badge">MVVM</span>
+          </div>
+
+          <h4 data-i18n="blHighlightsTitle" class="highlights-title">特性概览</h4>
+          <ul class="highlights-list">
+            <li data-i18n="blF1">Win2D 自定义渲染，高帧率且低系统开销</li>
+            <li data-i18n="blF2">流体背景、3D 歌词、粒子特效及多视窗模式</li>
+            <li data-i18n="blF3">深度兼容本地媒体及主流流媒体（Spotify / Apple Music 等）</li>
+            <li data-i18n="blF4">多格式歌词解析引擎，支持离线机器翻译</li>
+          </ul>
+
+          <a href="https://github.com/jayfunc/BetterLyrics" target="_blank" class="btn" data-i18n="viewGithub">查看源码</a>
         </div>
       </div>
     </section>
 
     <footer>
-      <p>© 2026 Zhe Fang</p>
+      <div class="footer-inner">
+        <div class="footer-spacer"></div>
+        <p class="copyright">© 2026 Zhe Fang</p>
+        <div class="footer-links">
+          <a href="mailto:zhefang.zf@foxmail.com"><i class="ph ph-envelope"></i></a>
+          <a href="https://space.bilibili.com/36159702" target="_blank"><i class="ph ph-television"></i></a>
+          <a href="https://www.cnblogs.com/jayfunc" target="_blank"><i class="ph ph-article"></i></a>
+          <a href="https://github.com/jayfunc" target="_blank"><i class="ph ph-github-logo"></i></a>
+        </div>
+      </div>
     </footer>
 
     <script src="script.js"></script>
