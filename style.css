@@ -596,7 +596,7 @@ footer {
   padding: 0.35rem 0.8rem;
   font-size: 0.85rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 20px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: none; /* 适配现有的自定义光标 */
@@ -604,7 +604,7 @@ footer {
 
 /* 针对不可点击的静态标签 (如项目里的技术栈) - 弱化视觉权重 */
 span.custom-badge {
-  border: 1px solid var(--accent-color);
+  border: 1px solid rgba(150, 150, 150, 0.25);
   color: var(--accent-color);
   background: rgba(128, 128, 128, 0.05);
 }
